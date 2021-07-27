@@ -3,42 +3,36 @@ require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
 ?>
 
-<div id="controls">
-    <form action="<?php echo WEB_ROOT . '/index.php'; ?>" method="post">
-        <label for="sort">Sort by:</label>
-        <select name="sort">
-            <option value="best">Best</option>
-            <option value="recent">Recent</option>
-        </select>
-        <input type="submit" value="Apply">
-    </form>
-</div>
-<div id="articles">
-    <div class="article-link">
-        <a href="<?php echo WEB_ROOT . '/view.php'; ?>">Lorem, ipsum.</a><br>
-        <span>200 comments | by User | 25/07/2021</span>
+<div id="posts">
+    <a href="#" class="controls-link">Create post</a><br>
+    <div>
+        <a href="#" class="post-link">Lorem, ipsum.</a><br>
+        <span>Username</span>
+        <span>26/07/2021</span>
     </div>
-    <div class="article-link">
-        <a href="<?php echo WEB_ROOT . '/view.php'; ?>">Lorem ipsum dolor sit.</a><br>
-        <span>56 comments | by AnotherUser | 25/07/2021</span>
+    <div>
+        <a href="#" class="post-link">Lorem, ipsum.</a><br>
+        <span>Username</span>
+        <span>26/07/2021</span>
     </div>
-    <div class="article-link">
-        <a href="<?php echo WEB_ROOT . '/view.php'; ?>">Lorem, ipsum.</a><br>
-        <span>200 comments | by User | 25/07/2021</span>
+    <div>
+        <a href="#" class="post-link">Lorem, ipsum.</a><br>
+        <span>Username</span>
+        <span>26/07/2021</span>
     </div>
-    <div class="article-link">
-        <a href="<?php echo WEB_ROOT . '/view.php'; ?>">Lorem ipsum dolor sit.</a><br>
-        <span>56 comments | by AnotherUser | 25/07/2021</span>
+    <div>
+        <a href="#" class="post-link">Lorem, ipsum.</a><br>
+        <span>Username</span>
+        <span>26/07/2021</span>
     </div>
 </div>
-<div id="topics">
-    <a href="<?php echo WEB_ROOT . '/create.php'; ?>" id="create-link">Create post</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">All</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">Programming</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">Games</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">Food</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">Fashion</a>
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">News</a>
+<div id="sidebar">
+    <a href="#" class="sidebar-link">All</a>
+    <a href="#" class="sidebar-link">Programming</a>
+    <a href="#" class="sidebar-link">Games</a>
+    <a href="#" class="sidebar-link">Food</a>
+    <a href="#" class="sidebar-link">Fashion</a>
+    <a href="#" class="sidebar-link">News</a>
 </div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

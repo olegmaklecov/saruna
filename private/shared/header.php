@@ -5,11 +5,9 @@
 <link rel="stylesheet" href="<?php echo WEB_ROOT . '/stylesheets/styles.css'; ?>">
 </head>
 <body>
-<div id="main">
-<div id="home">
-    <a href="<?php echo WEB_ROOT . '/index.php'; ?>">Saruna</a>
-</div>
-<div id="menu">
-    <a href="<?php echo WEB_ROOT . '/login.php'; ?>">Log in</a>
-    <a href="<?php echo WEB_ROOT . '/signup.php'; ?>">Sign up</a>
+<div id="wrapper">
+<div id="header">
+    <a href="#" id="logo">Saruna</a>
+    <a href="#" class="header-link">Log in</a>
+    <a href="#" class="header-link">Sign up</a>
 </div>

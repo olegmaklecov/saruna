@@ -3,47 +3,47 @@ require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
 ?>
 
-<div id="article">
+<div id="content">
+    <a href="#" class="controls-link">Edit</a>
     <h1>Lorem, ipsum dolor</h1>
     <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fuga, voluptates laudantium. Enim rem officia possimus, eius iusto eveniet incidunt voluptatum dolor porro modi, illum repudiandae perspiciatis fugit consequuntur eum obcaecati odit dolore quidem nisi id ea ut, mollitia hic. Iusto?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsam praesentium sint ut deserunt! In laborum consequuntur quas sunt eius! Maiores recusandae vitae nihil ea velit quis accusantium repudiandae autem? Tempore facere praesentium libero laboriosam cum laborum inventore velit sunt, et, maiores ipsum consectetur alias incidunt est mollitia. Nulla, ad delectus! Aspernatur aut libero rem minus laudantium aperiam quibusdam at impedit beatae consequuntur porro similique unde molestias in ipsam deleniti repellat ab modi vitae sapiente necessitatibus eaque, harum inventore? Assumenda totam quibusdam harum magni obcaecati repellendus maxime odit distinctio aliquid. Provident ducimus quia odit ea esse quaerat distinctio, laudantium accusantium.
     </p>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos temporibus corporis alias ad culpa quia ipsa non adipisci ex facere eveniet deserunt voluptatum laborum, eos expedita mollitia iusto? Amet, natus.
-    </p>
-    <a href="<?php echo WEB_ROOT . '/edit.php'; ?>">Edit</a>
 </div>
-<div id="comment-post">
+<div id="comment-form">
     <h1>Comment</h1>
-    <form action="<?php echo WEB_ROOT . '/view.php'; ?>" method="post">
+    <form action="#" method="post">
         <textarea name="comment" rows="6" cols="80"></textarea><br>
         <input type="submit" value="Submit">
     </form>
 </div>
 <div id="comments">
-    <div class="comment">
-        UserName | 26/07/2021
+    <div>
+        <span>Username</span>
+        <span>26/07/2021</span>
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
         </p>
     </div>
-    <div class="comment">
-        AnotherUser | 26/07/2021
-        <a href="<?php echo WEB_ROOT . '/delete.php'; ?>">Delete</a>
+    <div>
+        <span>Username</span>
+        <span>26/07/2021</span>
         <p>
-            Lorem ipsum dolor sit.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
         </p>
     </div>
-    <div class="comment">
-        Unknown | 26/07/2021
+    <div>
+        <span>Username</span>
+        <span>26/07/2021</span>
         <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores nemo incidunt iure corporis, dignissimos voluptatum tempora recusandae velit non molestias!
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
         </p>
     </div>
-    <div class="comment">
-        hWhat | 26/07/2021
+    <div>
+        <span>Username</span>
+        <span>26/07/2021</span>
         <p>
-            Lorem ipsum dolor sit amet consectetur.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
         </p>
     </div>
 </div>
