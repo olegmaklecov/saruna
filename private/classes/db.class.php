@@ -1,8 +1,8 @@
 <?php
 class Db {
-    protected $db;
-    protected $table;
-    protected $columns = [];
+    static protected $db;
+    static protected $table;
+    static protected $columns = [];
     protected $errors = [];
 
     static public function setDb($db) {
@@ -22,10 +22,17 @@ class Db {
         return $objects;
     }
 
+    static public function findById($id) {
+        $sql = 'SELECT * FROM ' . static::$table . ' ';
+        $sql .= 'WHERE id = \'' . self::$db->escape_string($id) . '\'';
+        $result = static::find($sql);
+        return array_shift($result);
+    }
+
     static protected function instantiate($record) {
         $object = new static;
         foreach ($record as $property => $value) {
-            if (property_exists($property)) {
+            if (property_exists($object, $property)) {
                 $object->$property = $value;
             }
         }

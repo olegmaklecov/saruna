@@ -1,30 +1,21 @@
 <?php
 require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
+
+$posts = Post::findAll();
 ?>
 
 <div id="posts">
     <a href="#" class="controls-link">Create post</a><br>
+    <?php foreach ($posts as $post) {
+        $user = User::findById($post->user_id);    
+    ?>
     <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
+        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" class="post-link"><?php echo $post->title ?></a><br>
+        <span><?php echo $user->username; ?></span>
+        <span><?php echo $post->date; ?></span>
     </div>
-    <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
-    </div>
-    <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
-    </div>
-    <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
-    </div>
+    <?php } ?>
 </div>
 <div id="sidebar">
     <a href="#" class="sidebar-link">All</a>

@@ -1,14 +1,16 @@
 <?php
 require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
+
+$id = $_GET['post_id'];
+$post = Post::findById($id);
+$comments = Comment::findByPostId($post->id);
 ?>
 
 <div id="content">
     <a href="#" class="controls-link">Edit</a>
-    <h1>Lorem, ipsum dolor</h1>
-    <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsam praesentium sint ut deserunt! In laborum consequuntur quas sunt eius! Maiores recusandae vitae nihil ea velit quis accusantium repudiandae autem? Tempore facere praesentium libero laboriosam cum laborum inventore velit sunt, et, maiores ipsum consectetur alias incidunt est mollitia. Nulla, ad delectus! Aspernatur aut libero rem minus laudantium aperiam quibusdam at impedit beatae consequuntur porro similique unde molestias in ipsam deleniti repellat ab modi vitae sapiente necessitatibus eaque, harum inventore? Assumenda totam quibusdam harum magni obcaecati repellendus maxime odit distinctio aliquid. Provident ducimus quia odit ea esse quaerat distinctio, laudantium accusantium.
-    </p>
+    <h1><?php echo $post->title ?></h1>
+    <p><?php echo $post->content; ?></p>
 </div>
 <div id="comment-form">
     <h1>Comment</h1>
@@ -18,34 +20,13 @@ include(SHARED_PATH . '/header.php');
     </form>
 </div>
 <div id="comments">
+    <?php foreach ($comments as $comment) { ?>
     <div>
-        <span>Username</span>
-        <span>26/07/2021</span>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
-        </p>
+        <span><?php echo $comment->username ?></span>
+        <span><?php echo $comment->date; ?></span>
+        <p><?php echo $comment->content; ?></p>
     </div>
-    <div>
-        <span>Username</span>
-        <span>26/07/2021</span>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
-        </p>
-    </div>
-    <div>
-        <span>Username</span>
-        <span>26/07/2021</span>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
-        </p>
-    </div>
-    <div>
-        <span>Username</span>
-        <span>26/07/2021</span>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, nesciunt.
-        </p>
-    </div>
+    <?php } ?>
 </div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

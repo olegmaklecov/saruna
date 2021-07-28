@@ -7,7 +7,7 @@
 <body>
 <div id="wrapper">
 <div id="header">
-    <a href="#" id="logo">Saruna</a>
+    <a href="<?php echo WEB_ROOT . '/'; ?>" id="logo">Saruna</a>
     <a href="#" class="header-link">Log in</a>
     <a href="#" class="header-link">Sign up</a>
 </div>
