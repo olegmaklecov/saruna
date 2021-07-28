@@ -11,9 +11,9 @@ class Comment extends Db {
 
     public function __construct($args=[]) {
         $this->post_id = $args['post_id'] ?? '';
-        $this->username = $args['username'] ?? '';
+        $this->username = 'iamuser';
         $this->content = $args['content'] ?? '';
-        $this->date = $args['date'] ?? '';
+        $this->date = date('Y-n-j');
     }
 
     static public function findByPostId($post_id) {

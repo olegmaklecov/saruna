@@ -1,6 +1,6 @@
-<form action="#" method="post" id="post-form">
+<form action="<?php echo WEB_ROOT . '/create.php'; ?>" method="post" id="post-form">
     <label for="topic">Topic</label><br>
-    <select name="topic">
+    <select name="post[topic]">
         <option value="programming">Programming</option>
         <option value="games">Games</option>
         <option value="food">Food</option>
@@ -8,8 +8,8 @@
         <option value="news">News</option>
     </select><br>
     <label for="title">Title</label><br>
-    <input type="text" name="title"><br>
+    <input type="text" name="post[title]"><br>
     <label for="content">Text</label><br>
-    <textarea name="content" cols="100", rows="8"></textarea><br>
+    <textarea name="post[content]" cols="100", rows="8"></textarea><br>
     <input type="submit" value="Post">
 </form>

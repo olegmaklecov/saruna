@@ -38,5 +38,29 @@ class Db {
         }
         return $object;
     }
+
+    protected function sanitise() {
+        $sanitised = [];
+        $properties = [];
+        foreach (static::$columns as $column) {
+            if ($column == 'id') { continue; }
+            $properties[$column] = $this->$column;
+        }
+        foreach ($properties as $key => $value) {
+            $sanitised[$key] = self::$db->escape_string($value);
+        }
+        return $sanitised;
+    }
+
+    public function create() {
+        $properties = $this->sanitise();
+        $sql = 'INSERT INTO ' . static::$table . ' (';
+        $sql .= join(', ', array_keys($properties));
+        $sql .= ') VALUES (\'';
+        $sql .= join('\', \'', array_values($properties));
+        $sql .= '\')';
+        self::$db->query($sql);
+        $this->id = self::$db->insert_id;
+    }
 }
 ?>

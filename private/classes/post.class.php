@@ -11,10 +11,10 @@ class Post extends Db {
     public $topic;
 
     public function __construct($args=[]) {
-        $this->user_id = $args['user_id'] ?? '';
+        $this->user_id = '1';
         $this->title = $args['title'] ?? '';
         $this->content = $args['content'] ?? '';
-        $this->date = $args['date'] ?? '';
+        $this->date = date('Y-n-j');
         $this->topic = $args['topic'] ?? '';
     }
 
