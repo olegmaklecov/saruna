@@ -62,5 +62,34 @@ class Db {
         self::$db->query($sql);
         $this->id = self::$db->insert_id;
     }
+
+    public function merge($args=[]) {
+        foreach ($args as $key => $value) {
+            if (property_exists($this, $key) && !is_null($value)) {
+                $this->$key = $value;
+            }
+        }
+    }
+
+    public function update() {
+        $properties = $this->sanitise();
+        $pairs = [];
+        foreach ($properties as $key => $value) {
+            $pairs[] = "$key='$value'";
+        }
+        $sql = 'UPDATE ' . static::$table . ' SET ';
+        $sql .= join(', ', $pairs);
+        $sql .= ' WHERE id = \'' . self::$db->escape_string($this->id) . '\' ';
+        $sql .= 'LIMIT 1';
+        echo $sql;
+        self::$db->query($sql);
+    }
+
+    public function delete() {
+        $sql = 'DELETE FROM ' . static::$table . ' ';
+        $sql .= 'WHERE id = \'' . self::$db->escape_string($this->id) . '\' ';
+        $sql .= 'LIMIT 1';
+        self::$db->query($sql);
+    }
 }
 ?>

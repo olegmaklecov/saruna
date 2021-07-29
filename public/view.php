@@ -2,6 +2,11 @@
 require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
 
+if (!isset($_GET['post_id'])) {
+    header('Location: ' . WEB_ROOT . '/index.php');
+    exit();
+}
+
 $id = $_GET['post_id'];
 $post = Post::findById($id);
 $comments = Comment::findByPostId($post->id);
@@ -16,13 +21,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div id="content">
-    <a href="#" class="controls-link">Edit</a>
-    <h1><?php echo $post->title ?></h1>
+<div>
+    <a href="<?php echo WEB_ROOT . '/edit.php?post_id=' . $id; ?>" class="controls-link">Edit</a>
+    <a href="<?php echo WEB_ROOT . '/delete_post.php?post_id=' . $id; ?>" class="controls-link">Delete</a>
+    <h2><?php echo $post->title ?></h2>
     <p><?php echo $post->content; ?></p>
 </div>
 <div id="comment-form">
-    <h1>Comment</h1>
+    <h3>Comments</h3>
     <form action="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" method="post">
         <textarea name="comment[content]" rows="6" cols="80"></textarea><br>
         <input type="submit" value="Submit">
@@ -30,9 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </div>
 <div id="comments">
     <?php foreach ($comments as $comment) { ?>
-    <hr>
     <div>
         <span><?php echo $comment->username . ' &#8226; ' . $comment->date; ?></span>
+        <a href="<?php echo WEB_ROOT . '/delete_comment.php?comment_id=' . $comment->id; ?>">Delete</a>
         <p><?php echo $comment->content; ?></p>
     </div>
     <?php } ?>

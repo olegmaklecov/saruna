@@ -3,7 +3,7 @@ require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
 ?>
 
-<div id="posts">
+<div>
     <div>
         <a href="#" class="post-link">Lorem, ipsum.</a><br>
         <span>Username</span>
@@ -16,7 +16,7 @@ include(SHARED_PATH . '/header.php');
     </div>
 </div>
 <div id="profile">
-    <h1>Username</h1>
+    <h3>Username</h3>
     <form action="#" method="post">
         <label for="password">Password</label><br>
         <input type="password" name="password"><br>

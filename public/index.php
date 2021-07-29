@@ -5,12 +5,12 @@ include(SHARED_PATH . '/header.php');
 $posts = Post::findAll();
 ?>
 
-<div id="posts">
-    <a href="<?php echo WEB_ROOT . '/create.php'; ?>" class="controls-link">Create post</a><br>
+<div>
+    <a href="<?php echo WEB_ROOT . '/create.php'; ?>" id="create-link">Create post</a><br>
     <?php foreach ($posts as $post) {
         $user = User::findById($post->user_id);    
     ?>
-    <div>
+    <div class="post">
         <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" class="post-link"><?php echo $post->title ?></a><br>
         <span><?php echo $user->username . ' &#8226; ' . $post->date; ?></span>
     </div>

@@ -1,21 +1,21 @@
 <?php
 class Post extends Db {
     static protected $table = 'posts';
-    static protected $columns = ['id', 'user_id', 'title', 'content', 'date', 'topic'];
+    static protected $columns = ['id', 'user_id', 'title', 'content', 'date', 'category'];
 
     public $id;
     public $user_id;
     public $title;
     public $content;
     public $date;
-    public $topic;
+    public $category;
 
     public function __construct($args=[]) {
         $this->user_id = '1';
         $this->title = $args['title'] ?? '';
         $this->content = $args['content'] ?? '';
         $this->date = date('Y-n-j');
-        $this->topic = $args['topic'] ?? '';
+        $this->category = $args['category'] ?? '';
     }
 
     static public function findAll() {
