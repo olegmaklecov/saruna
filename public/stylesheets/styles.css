@@ -75,6 +75,9 @@ form * {
 .controls-link {
     margin-right: 8px;
 }
+#heading {
+    grid-column: 1/3;
+}
 
 /* Edit/create page */
 #post-form {

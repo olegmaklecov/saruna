@@ -1,5 +1,11 @@
 <?php
 require_once('../private/init.php');
+
+if (!$session->isLoggedIn()) {
+    header('Location: ' . WEB_ROOT . '/index.php');
+    exit();
+}
+
 include(SHARED_PATH . '/header.php');
 
 if (!isset($_GET['post_id'])) {

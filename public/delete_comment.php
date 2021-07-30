@@ -1,6 +1,11 @@
 <?php
 require_once('../private/init.php');
 
+if (!$session->isLoggedIn()) {
+    header('Location: ' . WEB_ROOT . '/index.php');
+    exit();
+}
+
 if (!isset($_GET['comment_id'])) {
     header('Location: ' . WEB_ROOT . '/index.php');
     exit();

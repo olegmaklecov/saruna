@@ -1,22 +1,26 @@
 <?php
 require_once('../private/init.php');
+
+if (!$session->isLoggedIn()) {
+    header('Location: ' . WEB_ROOT . '/index.php');
+    exit();
+}
+
+$posts = Post::findByUserId($session->user_id);
+
 include(SHARED_PATH . '/header.php');
 ?>
 
 <div>
+    <?php foreach ($posts as $post) { ?>
     <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
+        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" class="post-link"><?php echo $post->title; ?></a><br>
+        <span><?php echo $session->username . ' &#8226; ' . $post->date; ?></span>
     </div>
-    <div>
-        <a href="#" class="post-link">Lorem, ipsum.</a><br>
-        <span>Username</span>
-        <span>26/07/2021</span>
-    </div>
+    <?php } ?>
 </div>
 <div id="profile">
-    <h3>Username</h3>
+    <h3><?php echo $session->username; ?></h3>
     <form action="#" method="post">
         <label for="password">Password</label><br>
         <input type="password" name="password"><br>

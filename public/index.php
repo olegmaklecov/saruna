@@ -2,11 +2,19 @@
 require_once('../private/init.php');
 include(SHARED_PATH . '/header.php');
 
-$posts = Post::findAll();
+if (!isset($_GET['category'])) {
+    $posts = Post::findAll();
+} else {
+    $posts = Post::findByCategory($_GET['category']);
+}
+
+
 ?>
 
 <div>
+    <?php if ($session->isLoggedIn()) { ?>
     <a href="<?php echo WEB_ROOT . '/create.php'; ?>" id="create-link">Create post</a><br>
+    <?php } ?>
     <?php foreach ($posts as $post) {
         $user = User::findById($post->user_id);    
     ?>
@@ -17,12 +25,12 @@ $posts = Post::findAll();
     <?php } ?>
 </div>
 <div id="sidebar">
-    <a href="#" class="sidebar-link">All</a>
-    <a href="#" class="sidebar-link">Programming</a>
-    <a href="#" class="sidebar-link">Games</a>
-    <a href="#" class="sidebar-link">Food</a>
-    <a href="#" class="sidebar-link">Fashion</a>
-    <a href="#" class="sidebar-link">News</a>
+    <a href="<?php echo WEB_ROOT . '/index.php'; ?>" class="sidebar-link">All</a>
+    <a href="<?php echo WEB_ROOT . '/index.php?category=programming'; ?>" class="sidebar-link">Programming</a>
+    <a href="<?php echo WEB_ROOT . '/index.php?category=games'; ?>" class="sidebar-link">Games</a>
+    <a href="<?php echo WEB_ROOT . '/index.php?category=food'; ?>" class="sidebar-link">Food</a>
+    <a href="<?php echo WEB_ROOT . '/index.php?category=fashion'; ?>" class="sidebar-link">Fashion</a>
+    <a href="<?php echo WEB_ROOT . '/index.php?category=news'; ?>" class="sidebar-link">News</a>
 </div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

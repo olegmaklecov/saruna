@@ -21,4 +21,5 @@ if ($conn->connect_errno) {
 }
 $db = $conn;
 Db::setDb($conn);
+$session = new Session;
 ?>

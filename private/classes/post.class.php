@@ -11,7 +11,6 @@ class Post extends Db {
     public $category;
 
     public function __construct($args=[]) {
-        $this->user_id = '1';
         $this->title = $args['title'] ?? '';
         $this->content = $args['content'] ?? '';
         $this->date = date('Y-n-j');
@@ -19,13 +18,22 @@ class Post extends Db {
     }
 
     static public function findAll() {
-        $sql = 'SELECT * FROM ' . self::$table;
+        $sql = 'SELECT * FROM ' . self::$table . ' ';
+        $sql .= 'ORDER BY date DESC';
         return static::find($sql);
     }
 
     static public function findByUserId($user_id) {
         $sql = 'SELECT * FROM ' . static::$table . ' ';
-        $sql .= 'WHERE user_id = \'' . self::$db->escape_string($user_id) . '\'';
+        $sql .= 'WHERE user_id = \'' . self::$db->escape_string($user_id) . '\' ';
+        $sql .= 'ORDER BY date DESC';
+        return static::find($sql);
+    }
+
+    static public function findByCategory($category) {
+        $sql = 'SELECT * FROM ' . static::$table . ' ';
+        $sql .= 'WHERE category = \'' . self::$db->escape_string($category) . '\' ';
+        $sql .= 'ORDER BY date DESC';
         return static::find($sql);
     }
 }

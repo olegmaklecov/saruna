@@ -11,14 +11,14 @@ class Comment extends Db {
 
     public function __construct($args=[]) {
         $this->post_id = $args['post_id'] ?? '';
-        $this->username = 'iamuser';
         $this->content = $args['content'] ?? '';
         $this->date = date('Y-n-j');
     }
 
     static public function findByPostId($post_id) {
         $sql = 'SELECT * FROM ' . static::$table . ' ';
-        $sql .= 'WHERE post_id = \'' . self::$db->escape_string($post_id) . '\'';
+        $sql .= 'WHERE post_id = \'' . self::$db->escape_string($post_id) . '\' ';
+        $sql .= 'ORDER BY date DESC';
         return static::find($sql);
     }
 }

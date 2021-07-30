@@ -16,12 +16,23 @@ class User extends Db {
         $this->confirm_pwd = $args['confirm_pwd'] ?? '';
     }
 
+    static public function findByUsername($username) {
+        $sql = 'SELECT * FROM ' . static::$table . ' ';
+        $sql .= 'WHERE username = \'' . self::$db->escape_string($username) . '\'';
+        $result = static::find($sql);
+        if (!empty($result)) {
+            return array_shift($result);
+        } else {
+            return false;
+        }
+    }
+
     public function setHashedPwd() {
         $this->pwd = password_hash($this->unhashed_pwd, PASSWORD_BCRYPT);
     }
 
     public function verifyPwd($pwd) {
-        return password_verify($this->pwd , $pwd);
+        return password_verify($pwd, $this->pwd);
     }
 }
 ?>
