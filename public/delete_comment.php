@@ -16,17 +16,17 @@ $comment = Comment::findById($id);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $comment->delete();
-    header('Location: ' . WEB_ROOT . '/view.php?post_id=' . $comment->post_id);
+    header('Location: ' . WEB_ROOT . '/view.php?post_id=' . h(u($comment->post_id)));
     exit();
 }
 
 include(SHARED_PATH . '/header.php');
 ?>
 
-<form id="delete-form" action="<?php echo WEB_ROOT . '/delete_comment.php?comment_id=' . $id; ?>" method="post">
+<form id="delete-form" action="<?php echo WEB_ROOT . '/delete_comment.php?comment_id=' . h(u($id)); ?>" method="post">
     <p>Are you sure you want to delete your comment?</p>
     <input type="submit" value="Yes">
-    <button><a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $comment->post_id; ?>" id="delete-no">No</a></button>
+    <button><a href="<?php echo WEB_ROOT . '/view.php?post_id=' . h(u($comment->post_id)); ?>" id="delete-no">No</a></button>
 </form>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

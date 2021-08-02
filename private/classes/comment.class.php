@@ -21,5 +21,15 @@ class Comment extends Db {
         $sql .= 'ORDER BY date DESC';
         return static::find($sql);
     }
+
+    protected function validate() {
+        $this->errors = [];
+
+        if (isBlank($this->content)) {
+            $this->errors[] = 'Content cannot be blank.';
+        }
+
+        return $this->errors;
+    }
 }
 ?>

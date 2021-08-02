@@ -6,6 +6,8 @@ define('PUBLIC_PATH', PROJECT_PATH . '/public');
 define('WEB_ROOT', '/saruna/public');
 
 require_once('db_credentials.php');
+require_once('functions.php');
+require_once('validation_functions.php');
 
 function myAutoload($class) {
     include('classes/' . $class . '.class.php');

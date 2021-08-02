@@ -36,5 +36,21 @@ class Post extends Db {
         $sql .= 'ORDER BY date DESC';
         return static::find($sql);
     }
+
+    protected function validate() {
+        $this->errors = [];
+
+        if (isBlank($this->title)) {
+            $this->errors[] = 'Title cannot be blank.';
+        } elseif (!hasLength($this->title, ['max' => 255])) {
+            $this->errors[] = 'Title must be less than 256 characters.';
+        }
+
+        if (isBlank($this->content)) {
+            $this->errors[] = 'Content cannot be blank.';
+        }
+
+        return $this->errors;
+    }
 }
 ?>

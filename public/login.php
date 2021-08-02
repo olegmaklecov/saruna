@@ -19,7 +19,7 @@ include(SHARED_PATH . '/header.php');
 
 <form action="<?php echo WEB_ROOT . '/login.php'; ?>" method="post" id="auth-form">
     <label for="username">Username</label><br>
-    <input type="text" name="username" value="<?php echo $username; ?>"><br>
+    <input type="text" name="username" value="<?php echo h($username); ?>"><br>
     <label for="password">Password</label><br>
     <input type="password" name="password"><br>
     <input type="submit" value="Log in">

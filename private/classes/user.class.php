@@ -34,5 +34,29 @@ class User extends Db {
     public function verifyPwd($pwd) {
         return password_verify($pwd, $this->pwd);
     }
+
+    protected function validate() {
+        $this->errors = [];
+
+        if (isBlank($this->username)) {
+            $this->errors[] = 'Username cannot be blank.';
+        } elseif (!hasLength($this->username, ['min' => 6, 'max' => 24])) {
+            $this->errors[] = 'Username must be between 6 and 24 characters long.';
+        } elseif (!hasUniqueUsername($this->username, $this->id)) {
+            $this->errors[] = 'Username already exists.';
+        }
+
+        if (isBlank($this->unhashed_pwd)) {
+            $this->errors[] = 'Password cannot be blank.';
+        } elseif (!hasLength($this->unhashed_pwd, ['min' => 8])) {
+            $this->errors[] = 'Password must be at least 8 characters long.';
+        }
+
+        if (isBlank($this->confirm_pwd) || $this->unhashed_pwd !== $this->confirm_pwd) {
+            $this->errors[] = 'Please confirm password.';
+        }
+
+        return $this->errors;
+    }
 }
 ?>

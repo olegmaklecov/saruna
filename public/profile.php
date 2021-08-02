@@ -6,6 +6,12 @@ if (!$session->isLoggedIn()) {
     exit();
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // TODO password update
+    $password = $_POST[''];
+    $user = User::findById($session->user_id);
+}
+
 $posts = Post::findByUserId($session->user_id);
 
 include(SHARED_PATH . '/header.php');
@@ -14,14 +20,14 @@ include(SHARED_PATH . '/header.php');
 <div>
     <?php foreach ($posts as $post) { ?>
     <div>
-        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" class="post-link"><?php echo $post->title; ?></a><br>
-        <span><?php echo $session->username . ' &#8226; ' . $post->date; ?></span>
+        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . h(u($post->id)); ?>" class="post-link"><?php echo h($post->title); ?></a><br>
+        <span><?php echo h($session->username) . ' &#8226; ' . $post->date; ?></span>
     </div>
     <?php } ?>
 </div>
 <div id="profile">
-    <h3><?php echo $session->username; ?></h3>
-    <form action="#" method="post">
+    <h3><?php echo h($session->username); ?></h3>
+    <form action="<?php echo WEB_ROOT . '/profile.php'; ?>" method="post">
         <label for="password">Password</label><br>
         <input type="password" name="password"><br>
         <label for="confirm_password">Confirm password</label><br>

@@ -3,7 +3,7 @@ class Db {
     static protected $db;
     static protected $table;
     static protected $columns = [];
-    protected $errors = [];
+    public $errors = [];
 
     static public function setDb($db) {
         self::$db = $db;
@@ -53,14 +53,18 @@ class Db {
     }
 
     public function create() {
+        $this->validate();
+        if (!empty($this->errors)) { return false; }
         $properties = $this->sanitise();
         $sql = 'INSERT INTO ' . static::$table . ' (';
         $sql .= join(', ', array_keys($properties));
         $sql .= ') VALUES (\'';
         $sql .= join('\', \'', array_values($properties));
         $sql .= '\')';
-        self::$db->query($sql);
+        echo $sql;
+        $result = self::$db->query($sql);
         $this->id = self::$db->insert_id;
+        return $result;
     }
 
     public function merge($args=[]) {
@@ -72,6 +76,9 @@ class Db {
     }
 
     public function update() {
+        $this->validate();
+        if (!empty($this->errors)) { return false; }
+
         $properties = $this->sanitise();
         $pairs = [];
         foreach ($properties as $key => $value) {
@@ -81,8 +88,8 @@ class Db {
         $sql .= join(', ', $pairs);
         $sql .= ' WHERE id = \'' . self::$db->escape_string($this->id) . '\' ';
         $sql .= 'LIMIT 1';
-        echo $sql;
-        self::$db->query($sql);
+        $result = self::$db->query($sql);
+        return $result;
     }
 
     public function delete() {

@@ -23,10 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<form id="delete-form" action="<?php echo WEB_ROOT . '/delete_post.php?post_id=' . $id; ?>" method="post">
+<form id="delete-form" action="<?php echo WEB_ROOT . '/delete_post.php?post_id=' . h(u($id)); ?>" method="post">
     <p>Are you sure you want to delete your post?</p>
     <input type="submit" value="Yes">
-    <button><a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $id; ?>" id="delete-no">No</a></button>
+    <button><a href="<?php echo WEB_ROOT . '/view.php?post_id=' . h(u($id)); ?>" id="delete-no">No</a></button>
 </form>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

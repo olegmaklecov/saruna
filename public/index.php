@@ -19,8 +19,8 @@ if (!isset($_GET['category'])) {
         $user = User::findById($post->user_id);    
     ?>
     <div class="post">
-        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . $post->id; ?>" class="post-link"><?php echo $post->title ?></a><br>
-        <span><?php echo $user->username . ' &#8226; ' . $post->date; ?></span>
+        <a href="<?php echo WEB_ROOT . '/view.php?post_id=' . h(u($post->id)); ?>" class="post-link"><?php echo h($post->title) ?></a><br>
+        <span><?php echo h($user->username) . ' &#8226; ' . h(u($post->date)); ?></span>
     </div>
     <?php } ?>
 </div>
