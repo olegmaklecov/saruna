@@ -7,14 +7,23 @@ if (!$session->isLoggedIn()) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // TODO password update
-    $password = $_POST[''];
     $user = User::findById($session->user_id);
+    $user->merge($_POST['user']);
+    $user->setHashedPwd();
+    $result = $user->update();
+    if ($result === true) {
+        header('Location: ' . WEB_ROOT . '/profile.php');
+        exit();
+    }
+
+} else {
+    $user = new User;
 }
 
 $posts = Post::findByUserId($session->user_id);
 
 include(SHARED_PATH . '/header.php');
+echo displayErrors($user->errors);
 ?>
 
 <div>
@@ -29,9 +38,9 @@ include(SHARED_PATH . '/header.php');
     <h3><?php echo h($session->username); ?></h3>
     <form action="<?php echo WEB_ROOT . '/profile.php'; ?>" method="post">
         <label for="password">Password</label><br>
-        <input type="password" name="password"><br>
+        <input type="password" name="user[unhashed_pwd]"><br>
         <label for="confirm_password">Confirm password</label><br>
-        <input type="password" name="confirm_password"><br>
+        <input type="password" name="user[confirm_pwd]"><br>
         <input type="submit" value="Change password">
     </form>
 </div>

@@ -1,6 +1,7 @@
 <?php
 require_once('../private/init.php');
 
+$errors = [];
 $username = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -11,10 +12,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $session->login($user);
         header('Location: ' . WEB_ROOT . '/profile.php');
         exit();
+    } else {
+        $errors[] = 'Incorrect username or password.';
     }
 }
 
 include(SHARED_PATH . '/header.php');
+echo displayErrors($errors);
 ?>
 
 <form action="<?php echo WEB_ROOT . '/login.php'; ?>" method="post" id="auth-form">

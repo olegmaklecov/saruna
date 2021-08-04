@@ -8,7 +8,6 @@ class User extends Db {
     public $unhashed_pwd;
     public $confirm_pwd;
     protected $pwd;
-    public $pwd_required = true;
 
     public function __construct($args=[]) {
         $this->username = $args['username'] ?? '';
